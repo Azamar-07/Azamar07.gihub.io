@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thiệp Mời Kỷ Yếu</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000; /* Màu nền ban đầu là đen */
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      transition: background-color 1s ease; /* Hiệu ứng chuyển màu nền */
+    }
+    #video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    #invitation {
+      display: none;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.9); /* Nền thông báo màu trắng với độ trong suốt */
+      padding: 20px;
+      border-radius: 10px;
+      color: #000; /* Chữ màu đen để nổi bật trên nền trắng */
+    }
+    #invitation h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    #invitation p {
+      font-size: 1.2em;
+      margin: 5px 0;
+    }
+    video {
+      width: 95%;
+      height: 95%;
+      object-fit: cover;
+    }
+    .button-container {
+      margin-top: 20px;
+    }
+    .button-container button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #ok-message, #sorry-message {
+      display: none;
+      font-size: 2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Video từ máy tính -->
+  <div id="video-container">
+    <video id="video" autoplay muted loop>
+      <source src="Download.mp4" type="video/mp4">
+      Trình duyệt của bạn không hỗ trợ video.
+    </video>
+  </div>
+
+  <!-- Thông báo mời kỷ yếu -->
+  <div id="invitation">
+    <h1>🎉 Bạn được mời đến kỉ yếu của tớ! 🎉</h1>
+    <p>Nếu Bạn Rảnh Hãy Đến Tham Dự Với Mình Nhóa Hehe :> </p>
+    <p>📅 Thời Gian: Chủ Nhật | Ngày 23/3/2025 | 10h30-11h30 </p>
+    <p>📍 Địa điểm: Trường THPT Hoa Lư A</p>
+
+    <!-- Nút bấm Đồng ý và Không -->
+    <div class="button-container">
+      <button id="agree-button">Đồng ý</button>
+      <button id="decline-button">Không</button>
+    </div>
+
+    <!-- Thông báo OK -->
+    <div id="ok-message">OK</div>
+
+    <!-- Thông báo xin lỗi với emoji con mèo -->
+    <div id="sorry-message">😿 Xin lỗi nhé!</div>
+  </div>
+
+  <script>
+    // Hiển thị thông báo sau khi video kết thúc (hoặc sau 15 giây)
+    setTimeout(function() {
+      document.getElementById("invitation").style.display = "block";
+      document.getElementById("video-container").style.display = "none";
+      document.body.style.backgroundColor = "#87CEEB"; // Thay đổi màu nền thành xanh da trời nhạt
+    }, 2000); // 15000 milliseconds = 15 giây
+
+    // Xử lý sự kiện khi nhấn nút Đồng ý
+    document.getElementById("agree-button").addEventListener("click", function() {
+      document.getElementById("invitation").style.display = "none"; // Ẩn thông báo mời
+      document.getElementById("ok-message").style.display = "none"; // Hiển thị chữ OK
+    });
+
+    // Xử lý sự kiện khi nhấn nút Không
+    document.getElementById("decline-button").addEventListener("click", function() {
+      document.getElementById("invitation").style.display = "none"; // Ẩn thông báo mời
+      document.getElementById("sorry-message").style.display = "block"; // Hiển thị emoji con mèo xin lỗi
+    });
+  </script>
+</body>
+</html>
